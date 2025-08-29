@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer');
-const twilio = require('twilio');
 require('dotenv').config();
 
 const app = express();
@@ -15,12 +13,18 @@ app.use(express.json());
 
 // MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://Malula_04:db_Deo2024@classic-maximize-pay.cuwyaoa.mongodb.net/classic-maximize-pay?retryWrites=true&w=majority';
+
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
 .then(() => console.log('MongoDB connected successfully'))
-.catch(err => console.log('MongoDB connection error:', err));
+.catch(err => {
+    console.log('MongoDB connection error:', err);
+    console.log('Please check your MongoDB connection string and credentials');
+});
+
+// ... (rest of the server code remains the same)
 
 // Models
 const UserSchema = new mongoose.Schema({
