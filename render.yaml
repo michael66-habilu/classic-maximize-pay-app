@@ -1,0 +1,22 @@
+# Exported from Render on 2025-08-29T14:28:41Z
+services:
+- type: web
+  name: classic-maximize-pay-app
+  runtime: node
+  repo: https://github.com/michael66-habilu/classic-maximize-pay-app
+  plan: free
+  envVars:
+  - key: NODE_ENV
+    sync: false
+  - key: JWT_SECRET
+    sync: false
+  - key: MONGODB_URI
+    sync: false
+  - key: PORT
+    sync: false
+  region: singapore
+  buildCommand: yarn install
+  startCommand: node server.js
+  autoDeployTrigger: commit
+  rootDir: cd backend npm install
+version: "1"
